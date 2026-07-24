@@ -14,6 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
+      # Substitute from + push build outputs to the ismailkattakath Cachix cache
+      # (so CI and consumers don't rebuild). Token is a repo secret.
+      - uses: cachix/cachix-action@v15
+        with:
+          name: ismailkattakath
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Formatting
         run: nix run nixpkgs#nixfmt-rfc-style -- --check $(find . -name '*.nix')
       - name: Flake outputs well-formed

@@ -3,6 +3,14 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+  # Public read-only binary cache for this flake's build outputs (CI pushes here).
+  nixConfig = {
+    extra-substituters = [ "https://ismailkattakath.cachix.org" ];
+    extra-trusted-public-keys = [
+      "ismailkattakath.cachix.org-1:7BbEvLpASY7aNUZfpzRMWir1zjU3nqmllBTl8p7gr2I="
+    ];
+  };
+
   outputs =
     { self, nixpkgs }:
     let
