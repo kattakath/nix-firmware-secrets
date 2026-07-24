@@ -1,4 +1,8 @@
-# firmware-secrets
+# nix-firmware-secrets
+
+[![CI](https://github.com/ismailkattakath/nix-firmware-secrets/actions/workflows/ci.yml/badge.svg)](https://github.com/ismailkattakath/nix-firmware-secrets/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Built with Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?logo=nixos&logoColor=white)](https://nixos.org)
 
 **Reflash-safe secrets for headless NixOS devices.** Plant a secret on the device's
 FAT *firmware* partition from another machine; a boot-time oneshot copies it into a
@@ -27,12 +31,19 @@ boot. No host key involved.
                cloudflared / wpa_supplicant reads /run/token ─► online
 ```
 
+## Prerequisites
+
+- **Nix** with flakes enabled (`experimental-features = nix-command flakes`).
+- **NixOS** on the target device (this ships a NixOS module).
+- A device that mounts a FAT *firmware* partition at boot (e.g. a Raspberry Pi's `/boot/firmware`).
+- **macOS** (optional) to use the `firmware-plant` companion for planting files onto the card.
+
 ## Install
 
 ```nix
 # flake.nix
 {
-  inputs.firmware-secrets.url = "github:ismailkattakath/firmware-secrets";
+  inputs.firmware-secrets.url = "github:ismailkattakath/nix-firmware-secrets";
 
   # in your nixosSystem modules:
   #   firmware-secrets.nixosModules.default
@@ -70,7 +81,7 @@ tunnel token + Wi-Fi setup.
 ## Planting from macOS
 
 ```sh
-nix run github:ismailkattakath/firmware-secrets#firmware-plant -- \
+nix run github:ismailkattakath/nix-firmware-secrets#firmware-plant -- \
   my-token=./my-token wpa_supplicant.conf=./wpa_supplicant.conf
 ```
 
@@ -93,6 +104,10 @@ override with `--volume`). Each `NAME` must match a `files.<x>.source`.
 | Git-encrypted secrets, multi-machine fleets, servers | [sops-nix](https://github.com/Mic92/sops-nix) / [agenix](https://github.com/ryantm/agenix) |
 | Secrets only inside `nix develop` | [agenix-shell](https://github.com/aciceri/agenix-shell) |
 | A headless device that gets re-flashed and can't lose network/tunnel | **this** |
+
+## Used in production
+
+See it wired into a real fleet in **[kattakath/nix-config](https://github.com/kattakath/nix-config)** — [`hosts/nixpi.nix`](https://github.com/kattakath/nix-config/blob/main/hosts/nixpi.nix) imports `nixosModules.default` for a headless Raspberry Pi's Cloudflare-tunnel token + Wi-Fi.
 
 ## License
 
