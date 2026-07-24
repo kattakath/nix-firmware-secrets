@@ -20,7 +20,6 @@
         "aarch64-linux"
       ];
       darwinSystems = [
-        "x86_64-darwin"
         "aarch64-darwin"
       ];
       allSystems = linuxSystems ++ darwinSystems;
