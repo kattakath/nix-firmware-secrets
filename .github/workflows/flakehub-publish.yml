@@ -30,6 +30,6 @@ jobs:
             experimental-features = nix-command flakes
       - uses: DeterminateSystems/flakehub-push@v6
         with:
-          name: ismailkattakath/nix-firmware-secrets
+          name: kattakath/nix-firmware-secrets
           visibility: public
           rolling: true

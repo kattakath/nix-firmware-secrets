@@ -24,6 +24,6 @@ jobs:
       - uses: "DeterminateSystems/flakehub-push@main"
         with:
           visibility: "public"
-          name: "ismailkattakath/nix-firmware-secrets"
+          name: "kattakath/nix-firmware-secrets"
           tag: "${{ inputs.tag }}"
           include-output-paths: true
