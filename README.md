@@ -1,6 +1,6 @@
 # nix-firmware-secrets
 
-[![CI](https://github.com/ismailkattakath/nix-firmware-secrets/actions/workflows/ci.yml/badge.svg)](https://github.com/ismailkattakath/nix-firmware-secrets/actions/workflows/ci.yml)
+[![CI](https://github.com/kattakath/nix-firmware-secrets/actions/workflows/ci.yml/badge.svg)](https://github.com/kattakath/nix-firmware-secrets/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Built with Nix](https://img.shields.io/badge/built%20with-Nix-5277C3.svg?logo=nixos&logoColor=white)](https://nixos.org)
 
@@ -43,7 +43,7 @@ boot. No host key involved.
 ```nix
 # flake.nix
 {
-  inputs.firmware-secrets.url = "github:ismailkattakath/nix-firmware-secrets";
+  inputs.firmware-secrets.url = "github:kattakath/nix-firmware-secrets";
 
   # in your nixosSystem modules:
   #   firmware-secrets.nixosModules.default
@@ -81,7 +81,7 @@ tunnel token + Wi-Fi setup.
 ## Planting from macOS
 
 ```sh
-nix run github:ismailkattakath/nix-firmware-secrets#firmware-plant -- \
+nix run github:kattakath/nix-firmware-secrets#firmware-plant -- \
   my-token=./my-token wpa_supplicant.conf=./wpa_supplicant.conf
 ```
 

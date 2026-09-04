@@ -6,7 +6,7 @@
 {
   services.firmwareProvisioning = {
     firmwareDir = "/boot/firmware"; # Raspberry Pi default
-    docsHint = "Plant with: nix run github:ismailkattakath/nix-firmware-secrets#firmware-plant -- cloudflared-token=./token wpa_supplicant.conf=./wpa_supplicant.conf";
+    docsHint = "Plant with: nix run github:kattakath/nix-firmware-secrets#firmware-plant -- cloudflared-token=./token wpa_supplicant.conf=./wpa_supplicant.conf";
 
     files = {
       # Required: the tunnel connector token -> /run, ordered before cloudflared.
