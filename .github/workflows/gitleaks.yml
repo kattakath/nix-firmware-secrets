@@ -48,7 +48,7 @@ jobs:
       # and demands a paid GITLEAKS_LICENSE. Moving this repo under the org tripped
       # exactly that. The gitleaks BINARY is MIT-licensed and unrestricted — only
       # the wrapper is gated — so run it directly and drop the third-party action
-      # (one less supply-chain edge, and it is pinned by our own flake.lock).
+      # (one less supply-chain edge).
       - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
         with:
           extra_nix_config: |

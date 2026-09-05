@@ -76,7 +76,8 @@ tunnel token + Wi-Fi setup.
 | `files.<name>.mode` | `0600` | Mode of the installed file |
 | `files.<name>.required` | `false` | Fail the unit if the plant is absent |
 | `files.<name>.postInstall` | `""` | Shell to run after install |
-| `files.<name>.{before,requiredBy,wantedBy}` | — | systemd ordering/deps |
+| `files.<name>.{before,requiredBy}` | `[ ]` | systemd `Before=` / `RequiredBy=` on the consuming unit |
+| `files.<name>.wantedBy` | `[ "multi-user.target" ]` | systemd `WantedBy=` |
 
 ## Planting from macOS
 
