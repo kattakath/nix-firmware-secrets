@@ -35,7 +35,7 @@
       };
 
       perSystem =
-        { pkgs, system, ... }:
+        { config, pkgs, system, ... }:
         {
           formatter = pkgs.nixfmt-rfc-style;
 
@@ -51,9 +51,12 @@
           );
           apps = pkgs.lib.optionalAttrs (system == "aarch64-darwin") (
             let
+              # The package built above, not a second callPackage of the same
+              # file: two call sites are two chances for the app and the package
+              # to drift apart.
               app = {
                 type = "app";
-                program = "${pkgs.callPackage ./apps/firmware-plant.nix { }}/bin/firmware-plant";
+                program = "${config.packages.firmware-plant}/bin/firmware-plant";
               };
             in
             {
